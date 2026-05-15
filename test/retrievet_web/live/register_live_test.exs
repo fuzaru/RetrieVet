@@ -48,4 +48,28 @@ defmodule RetrievetWeb.RegisterLiveTest do
     assert_redirect(view, ~p"/")
     assert Accounts.get_user_by_email(@valid_attrs["email"])
   end
+
+  test "OTP verification shows an error for invalid OTP", %{conn: conn} do
+    {:ok, pending_registration} = Accounts.start_registration(@valid_attrs)
+
+    token =
+      Phoenix.Token.sign(RetrievetWeb.Endpoint, "pending_registration", pending_registration.id)
+
+    {:ok, view, _html} = live(conn, ~p"/register/verify/#{token}")
+
+    view
+    |> form("#otp-verification-form", %{"otp" => "000000"})
+    |> render_submit()
+
+    assert has_element?(view, "#otp-verification-error")
+    assert Accounts.get_user_by_email(@valid_attrs["email"]) == nil
+  end
+
+  test "OTP verification shows a recovery link for an invalid token", %{conn: conn} do
+    {:ok, view, _html} = live(conn, ~p"/register/verify/not-a-valid-token")
+
+    refute has_element?(view, "#otp-verification-form")
+    assert has_element?(view, "#otp-verification-error")
+    assert has_element?(view, "#register-again-link")
+  end
 end

@@ -71,6 +71,21 @@ defmodule Retrievet.AccountsTest do
     assert_email_sent(to: {full_name(@valid_attrs), @valid_attrs.email})
   end
 
+  test "start_registration/1 replaces an existing pending registration for the same email" do
+    assert {:ok, first_registration} = Accounts.start_registration(@valid_attrs)
+
+    replacement_attrs =
+      @valid_attrs
+      |> Map.put(:first_name, "Jane")
+      |> Map.put(:cp_number, "09123456780")
+
+    assert {:ok, replacement_registration} = Accounts.start_registration(replacement_attrs)
+
+    assert replacement_registration.id != first_registration.id
+    assert replacement_registration.first_name == "Jane"
+    assert Repo.get(PendingRegistration, first_registration.id) == nil
+  end
+
   test "verify_pending_registration/2 creates the user after a valid OTP" do
     assert {:ok, pending_registration} = Accounts.start_registration(@valid_attrs)
 
@@ -90,6 +105,27 @@ defmodule Retrievet.AccountsTest do
 
     assert {:error, :invalid_otp} =
              Accounts.verify_pending_registration(pending_registration.id, "000000")
+
+    assert Accounts.get_user_by_email(@valid_attrs.email) == nil
+  end
+
+  test "verify_pending_registration/2 rejects an expired OTP without creating a user" do
+    assert {:ok, pending_registration} = Accounts.start_registration(@valid_attrs)
+
+    expired_at =
+      DateTime.utc_now()
+      |> DateTime.add(-601, :second)
+      |> DateTime.truncate(:second)
+
+    pending_registration
+    |> change(%{otp_sent_at: expired_at})
+    |> Repo.update!()
+
+    assert {:error, :expired} =
+             Accounts.verify_pending_registration(
+               pending_registration.id,
+               pending_registration.otp
+             )
 
     assert Accounts.get_user_by_email(@valid_attrs.email) == nil
   end

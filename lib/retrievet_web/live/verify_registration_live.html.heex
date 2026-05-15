@@ -30,11 +30,13 @@
           <button class="btn btn-primary w-full mt-2" type="submit">Verify OTP</button>
         </.form>
       <% else %>
-        <.link navigate="/register" class="btn btn-primary w-full">Register again</.link>
+        <.link id="register-again-link" navigate="/register" class="btn btn-primary w-full">
+          Register again
+        </.link>
       <% end %>
 
       <%= if @error do %>
-        <div class="alert alert-error shadow-lg w-full">{@error}</div>
+        <div id="otp-verification-error" class="alert alert-error shadow-lg w-full">{@error}</div>
       <% end %>
     </div>
   </div>
