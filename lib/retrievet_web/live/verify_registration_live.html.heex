@@ -1,0 +1,41 @@
+<Layouts.app flash={@flash}>
+  <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 to-orange-100">
+    <div class="max-w-md w-full p-8 bg-white/90 rounded-2xl shadow-xl flex flex-col items-center gap-8 mt-16">
+      <.icon name="hero-shield-check" class="w-12 h-12 text-pink-500" />
+      <div class="flex flex-col items-center gap-2 text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Verify your account</h2>
+        <p :if={@pending_email} class="text-sm text-gray-600">
+          Enter the OTP sent to {@pending_email}.
+        </p>
+      </div>
+
+      <%= if @token_valid? do %>
+        <.form
+          for={@form}
+          id="otp-verification-form"
+          phx-change="validate"
+          phx-submit="verify"
+          class="w-full flex flex-col gap-4"
+          autocomplete="off"
+        >
+          <.input
+            field={@form[:otp]}
+            type="text"
+            label="OTP"
+            required
+            class="input input-bordered w-full text-center tracking-widest"
+            inputmode="numeric"
+            maxlength="6"
+          />
+          <button class="btn btn-primary w-full mt-2" type="submit">Verify OTP</button>
+        </.form>
+      <% else %>
+        <.link navigate="/register" class="btn btn-primary w-full">Register again</.link>
+      <% end %>
+
+      <%= if @error do %>
+        <div class="alert alert-error shadow-lg w-full">{@error}</div>
+      <% end %>
+    </div>
+  </div>
+</Layouts.app>

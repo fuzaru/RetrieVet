@@ -1,0 +1,60 @@
+<Layouts.app flash={@flash}>
+  <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 to-orange-100">
+    <div class="max-w-md w-full p-8 bg-white/90 rounded-2xl shadow-xl flex flex-col items-center gap-8 mt-16">
+      <.icon name="hero-user-plus" class="w-12 h-12 text-pink-500" />
+      <h2 class="text-2xl font-bold text-gray-900">Register for RetrieVet</h2>
+      <.form
+        for={@form}
+        id="register-form"
+        phx-change="validate"
+        phx-submit="register"
+        class="w-full flex flex-col gap-4"
+        autocomplete="off"
+      >
+        <.input
+          field={@form["first_name"]}
+          type="text"
+          label="First Name"
+          required
+          class="input input-bordered w-full"
+        />
+        <.input
+          field={@form["last_name"]}
+          type="text"
+          label="Last Name"
+          required
+          class="input input-bordered w-full"
+        />
+        <.input
+          field={@form["cp_number"]}
+          type="text"
+          label="Cellphone Number (PH)"
+          required
+          class="input input-bordered w-full"
+          placeholder="09XXXXXXXXX"
+        />
+        <.input
+          field={@form["email"]}
+          type="email"
+          label="Email"
+          required
+          class="input input-bordered w-full"
+        />
+        <.input
+          field={@form["password"]}
+          type="password"
+          label="Password"
+          required
+          class="input input-bordered w-full"
+        />
+        <button class="btn btn-secondary w-full mt-2" type="submit">Register</button>
+      </.form>
+      <%= if @error do %>
+        <div class="alert alert-error shadow-lg w-full">{@error}</div>
+      <% end %>
+      <div class="text-sm text-gray-600">
+        Already have an account? <.link navigate="/login" class="link link-primary">Login</.link>
+      </div>
+    </div>
+  </div>
+</Layouts.app>

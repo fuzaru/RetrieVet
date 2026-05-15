@@ -18,6 +18,11 @@ defmodule RetrievetWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/login", LoginLive, :show
+    live "/register", RegisterLive, :show
+    live "/register/verify/:token", VerifyRegistrationLive, :show
+    post "/otp/send", OtpController, :send_otp
+    post "/otp/verify", OtpController, :verify_otp
   end
 
   # Other scopes may use custom stacks.
