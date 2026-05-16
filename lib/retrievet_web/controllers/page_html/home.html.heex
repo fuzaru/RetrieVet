@@ -1,27 +1,213 @@
 <Layouts.app flash={@flash}>
-  <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 to-orange-100">
-    <div class="max-w-xl w-full p-8 bg-white/90 rounded-2xl shadow-xl flex flex-col items-center gap-8 mt-16">
-      <div class="flex flex-col items-center gap-2">
-        <.icon name="hero-paw" class="w-16 h-16 text-pink-500" />
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Welcome to RetrieVet</h1>
-        <p class="text-lg text-gray-600 text-center">
-          Book appointments and meet veterinarians online with live video. Your pet's health, just a click away.
-        </p>
+  <section class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <div class="max-w-3xl">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-100">
+        <span class="size-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.8)]">
+        </span>
+        AI-powered clinic workflow
       </div>
-      <div class="flex gap-6 mt-4">
+
+      <h1 class="max-w-2xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+        See every pet clearly. <span class="block text-emerald-200">Speak to every owner.</span>
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+        RetrieVet connects clinics and pet owners with a calm, premium care experience:
+        online booking, triage, video consults, and follow-up care wrapped into one polished
+        platform.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
         <.link
-          navigate="/login"
-          class="btn btn-primary px-8 py-2 rounded-lg text-lg font-semibold shadow hover:scale-105 transition-transform"
+          navigate={~p"/register"}
+          class="inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
+        >
+          Get started <.icon name="hero-arrow-right" class="ml-2 size-4" />
+        </.link>
+        <.link
+          navigate={~p"/login"}
+          class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
         >
           Login
         </.link>
-        <.link
-          navigate="/register"
-          class="btn btn-outline btn-secondary px-8 py-2 rounded-lg text-lg font-semibold shadow hover:scale-105 transition-transform"
-        >
-          Register
-        </.link>
+      </div>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <p class="text-sm text-slate-400">For clinics</p>
+          <p class="mt-2 text-xl font-semibold text-white">Single workflow</p>
+          <p class="mt-2 text-sm leading-6 text-slate-300">
+            Bookings, reminders, triage, and follow-up in one place.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <p class="text-sm text-slate-400">For pet owners</p>
+          <p class="mt-2 text-xl font-semibold text-white">Less friction</p>
+          <p class="mt-2 text-sm leading-6 text-slate-300">
+            Faster answers, clearer next steps, and less waiting around.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <p class="text-sm text-slate-400">For care teams</p>
+          <p class="mt-2 text-xl font-semibold text-white">Always on</p>
+          <p class="mt-2 text-sm leading-6 text-slate-300">
+            Support the journey before, during, and after the visit.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="relative">
+      <div class="absolute -left-6 top-10 h-32 w-32 rounded-full bg-emerald-300/20 blur-3xl">
+      </div>
+      <div class="absolute -right-10 bottom-8 h-40 w-40 rounded-full bg-sky-400/20 blur-3xl">
+      </div>
+
+      <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-4 shadow-[0_30px_100px_rgba(15,23,42,0.5)] backdrop-blur-xl">
+        <div class="flex items-center justify-between border-b border-white/10 px-3 pb-4">
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Live translation</p>
+            <p class="mt-1 text-sm text-slate-200">AI Interpreter Active</p>
+          </div>
+          <div class="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-100">
+            <span class="mr-2 inline-block size-2 rounded-full bg-emerald-300"></span> Online
+          </div>
+        </div>
+
+        <div class="grid gap-4 p-3 md:grid-cols-[1fr_0.9fr]">
+          <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+            <p class="text-xs uppercase tracking-[0.28em] text-slate-400">Consultation</p>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-white">
+              Calm video visits with clear next steps.
+            </h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">
+              Use one flow for intake, triage, booking, and post-visit follow-up. The interface
+              stays focused, premium, and easy to scan.
+            </p>
+
+            <div class="mt-5 space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-4">
+                <p class="text-[11px] uppercase tracking-[0.25em] text-slate-500">Owner</p>
+                <p class="mt-2 text-sm leading-6 text-slate-200">
+                  Our dog started coughing after the walk. Can we speak to a vet today?
+                </p>
+              </div>
+              <div class="rounded-2xl border border-emerald-400/15 bg-emerald-400/10 p-4">
+                <p class="text-[11px] uppercase tracking-[0.25em] text-emerald-200/80">
+                  RetrieVet AI
+                </p>
+                <p class="mt-2 text-sm leading-6 text-emerald-50">
+                  I can help route this to the right clinic, gather symptoms, and prepare the
+                  vet before the visit.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Fast access</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-400">Average response</p>
+                  <p class="text-3xl font-semibold tracking-tight text-white">&lt; 1 min</p>
+                </div>
+                <div class="rounded-2xl bg-white/5 p-3 text-emerald-200">
+                  <.icon name="hero-clock" class="size-6" />
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
+              <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Care journey</p>
+              <div class="mt-4 space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 rounded-full bg-emerald-400/20 p-2 text-emerald-200">
+                    <.icon name="hero-chat-bubble-left-right" class="size-4" />
+                  </div>
+                  <div>
+                    <p class="font-medium text-white">Triage</p>
+                    <p class="text-sm leading-6 text-slate-300">Capture symptoms and urgency.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 rounded-full bg-sky-400/20 p-2 text-sky-200">
+                    <.icon name="hero-video-camera" class="size-4" />
+                  </div>
+                  <div>
+                    <p class="font-medium text-white">Consult</p>
+                    <p class="text-sm leading-6 text-slate-300">Meet the right vet remotely.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="mt-0.5 rounded-full bg-amber-400/20 p-2 text-amber-200">
+                    <.icon name="hero-heart" class="size-4" />
+                  </div>
+                  <div>
+                    <p class="font-medium text-white">Follow-up</p>
+                    <p class="text-sm leading-6 text-slate-300">Keep the care plan moving.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="providers" class="mt-20 border-t border-white/10 pt-16">
+    <div class="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-300/80">
+          For Clinics
+        </p>
+        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Reach more owners with less friction.
+        </h2>
+        <p class="mt-4 text-base leading-7 text-slate-300">
+          A polished front door for clinics that want a more premium digital presence.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
+            Booking
+          </span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
+            Triage
+          </span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
+            Video consults
+          </span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
+            Follow-up care
+          </span>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-6">
+        <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Partner model</p>
+        <div class="mt-5 space-y-4">
+          <div class="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+            <p class="text-sm font-medium text-white">1. Discover</p>
+            <p class="mt-1 text-sm leading-6 text-slate-300">
+              Owners land on a reassuring interface that feels trustworthy immediately.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+            <p class="text-sm font-medium text-white">2. Book</p>
+            <p class="mt-1 text-sm leading-6 text-slate-300">
+              The consultation path is direct, clean, and responsive on mobile.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+            <p class="text-sm font-medium text-white">3. Continue</p>
+            <p class="mt-1 text-sm leading-6 text-slate-300">
+              Post-visit care remains inside the same product experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layouts.app>

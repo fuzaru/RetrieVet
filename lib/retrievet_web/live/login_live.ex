@@ -14,7 +14,7 @@ defmodule RetrievetWeb.LoginLive do
   def handle_event("login", %{"email" => email, "password" => password}, socket) do
     case Accounts.authenticate_user(email, password) do
       {:ok, _user} ->
-        {:noreply, push_navigate(socket, to: "/dashboard")}
+        {:noreply, push_navigate(socket, to: ~p"/dashboard")}
 
       {:error, :too_many_attempts} ->
         {:noreply, assign(socket, error: "Too many failed attempts. Please try again later.")}

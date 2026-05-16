@@ -19,6 +19,7 @@ defmodule RetrievetWeb.Router do
 
     get "/", PageController, :home
     live "/login", LoginLive, :show
+    live "/dashboard", DashboardLive, :index
     live "/register", RegisterLive, :show
     live "/register/verify/:token", VerifyRegistrationLive, :show
     post "/otp/send", OtpController, :send_otp
